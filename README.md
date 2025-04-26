@@ -19,6 +19,10 @@ XYZタイル形式で格納された画像データセットの検出・分析�
   - `numpy`
 - [uv](https://docs.astral.sh/uv/#installation)
 
+or
+
+- Docker
+
 ## インストール方法
 
 1. リポジトリをクローン:
@@ -156,6 +160,13 @@ uv run cutofftiles.py /path/to/tiles --detect-missing --zoom 18 --min-neighbors 
 - **MacのPreview**: インタラクティブモードはMacのPreviewアプリを使用するため、Mac環境でのみ完全に機能します。他のプラットフォームでは、自動削除モード(`--n`)を使用してください。
 - **大規模なタイルセット**: 非常に大きなタイルセットの場合、`--zoom`オプションで特定のズームレベルのみを処理することでメモリ使用量を削減できます。
 - **欠落タイル検出の精度**: `--min-neighbors`オプションを調整することで、誤検知の確率を下げることができます。デフォルト値の6は通常良好な結果を示しますが、タイルセットによってはさらに高い値を設定すると良い場合があります。
+
+## Dockerでの利用方法
+
+```sh
+docker build -t cutofftiles .
+docker run -v /path/to/tiles:/output -it cutofftiles /output --detect-missing
+```
 
 ## ライセンス
 
