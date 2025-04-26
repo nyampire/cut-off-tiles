@@ -1,0 +1,10 @@
+[project]
+name = "cut-off-tiles"
+version = "0.1.0"
+description = "XYZタイル形式で格納された画像データセットの検出・分析ツール。連続した白/黒画素を持つタイルの検出と、欠落タイルの特定を行います。"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.2.5",
+    "pillow>=11.2.1",
+]
