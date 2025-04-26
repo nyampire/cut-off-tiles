@@ -13,23 +13,23 @@ XYZタイル形式で格納された画像データセットの検出・分析�
 
 ## 必要条件
 
-- Python 3.6以上
+- Python 3.12以上
 - 必要ライブラリ:
-  ```bash
-  pip install pillow numpy
-  ```
+  - `Pillow`
+  - `numpy`
+- [uv](https://docs.astral.sh/uv/#installation)
 
 ## インストール方法
 
 1. リポジトリをクローン:
    ```bash
-   git clone https://github.com/yourusername/cut-off-tiles.git
+   git clone https://github.com/nyampire/cut-off-tiles.git
    cd cut-off-tiles
    ```
 
 2. 必要なライブラリをインストール:
    ```bash
-   pip install pillow numpy
+   uv sync
    ```
 
 3. 実行権限を付与（Linuxの場合）:
@@ -42,7 +42,7 @@ XYZタイル形式で格納された画像データセットの検出・分析�
 ### 基本的な構文
 
 ```bash
-python cutofftiles.py [ディレクトリパス] [モード] [オプション]
+uv run cutofftiles.py [ディレクトリパス] [モード] [オプション]
 ```
 
 ### 1. 連続白/黒画素検出モード
@@ -51,20 +51,20 @@ python cutofftiles.py [ディレクトリパス] [モード] [オプション]
 
 ```bash
 # 閾値100で連続した白/黒画素を検出
-python cutofftiles.py /path/to/tiles --detect-pixels --threshold 100
+uv run cutofftiles.py /path/to/tiles --detect-pixels --threshold 100
 ```
 
 #### 追加オプション
 
 ```bash
 # 自動削除モード（検出されたタイルを確認なしで削除）
-python cutofftiles.py /path/to/tiles --detect-pixels --n
+uv run cutofftiles.py /path/to/tiles --detect-pixels --n
 
 # 並列処理のプロセス数を指定（8プロセス）
-python cutofftiles.py /path/to/tiles --detect-pixels --processes 8
+uv run cutofftiles.py /path/to/tiles --detect-pixels --processes 8
 
 # 閾値と自動削除と並列処理を組み合わせ
-python cutofftiles.py /path/to/tiles --detect-pixels --threshold 150 --n --processes 4
+uv run cutofftiles.py /path/to/tiles --detect-pixels --threshold 150 --n --processes 4
 ```
 
 ### 2. 欠落タイル検出モード
@@ -73,35 +73,35 @@ python cutofftiles.py /path/to/tiles --detect-pixels --threshold 150 --n --proce
 
 ```bash
 # 欠落タイルを検出（デフォルトでz/x/y.png形式）
-python cutofftiles.py /path/to/tiles --detect-missing
+uv run cutofftiles.py /path/to/tiles --detect-missing
 ```
 
 #### 追加オプション
 
 ```bash
 # 特定のズームレベルのみ検査
-python cutofftiles.py /path/to/tiles --detect-missing --zoom 15
+uv run cutofftiles.py /path/to/tiles --detect-missing --zoom 15
 
 # カスタム命名パターンを指定（例：x_y_z.png形式）
-python cutofftiles.py /path/to/tiles --detect-missing --pattern "(\d+)_(\d+)_(\d+)\.png"
+uv run cutofftiles.py /path/to/tiles --detect-missing --pattern "(\d+)_(\d+)_(\d+)\.png"
 
 # 最低隣接タイル数を変更（デフォルト: 6）
-python cutofftiles.py /path/to/tiles --detect-missing --min-neighbors 7
+uv run cutofftiles.py /path/to/tiles --detect-missing --min-neighbors 7
 
 # 境界パディングを変更（デフォルト: 1）
-python cutofftiles.py /path/to/tiles --detect-missing --padding 2
+uv run cutofftiles.py /path/to/tiles --detect-missing --padding 2
 
 # HTML出力ファイル名を指定
-python cutofftiles.py /path/to/tiles --detect-missing --html custom_visualization.html
+uv run cutofftiles.py /path/to/tiles --detect-missing --html custom_visualization.html
 
 # HTML視覚化を無効化
-python cutofftiles.py /path/to/tiles --detect-missing --no-html
+uv run cutofftiles.py /path/to/tiles --detect-missing --no-html
 ```
 
 ### ヘルプを表示
 
 ```bash
-python cutofftiles.py --help
+uv run cutofftiles.py --help
 ```
 
 ## オプション一覧
@@ -134,7 +134,7 @@ python cutofftiles.py --help
 ### 例1: 連続白黒画素の自動検出と削除
 
 ```bash
-python cutofftiles.py /path/to/tiles --detect-pixels --threshold 100 --n --processes 8
+uv run cutofftiles.py /path/to/tiles --detect-pixels --threshold 100 --n --processes 8
 ```
 
 この例では:
@@ -146,7 +146,7 @@ python cutofftiles.py /path/to/tiles --detect-pixels --threshold 100 --n --proce
 ### 例2: ズームレベル18の欠落タイル検出と詳細設定
 
 ```bash
-python cutofftiles.py /path/to/tiles --detect-missing --zoom 18 --min-neighbors 7 --padding 2
+uv run cutofftiles.py /path/to/tiles --detect-missing --zoom 18 --min-neighbors 7 --padding 2
 ```
 
 この例では:
